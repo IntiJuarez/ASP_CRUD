@@ -30,10 +30,10 @@ namespace ASP_SP.Source.Pages
 
             SqlCommand usuario = new SqlCommand("ContarUsuario", con)
             {
-                CommandType = System.Data.CommandType.StoredProcedure
+                CommandType = CommandType.StoredProcedure
             };
             
-            usuario.Parameters.Add("@usuario", System.Data.SqlDbType.VarChar).Value = txtUsuario.Text;
+            usuario.Parameters.Add("@usuario", SqlDbType.VarChar).Value = txtUsuario.Text;
             int user = Convert.ToInt32(usuario.ExecuteScalar());
             if(txtNombres.Text==""||txtApellidos.Text==""||txtFecha.Text==""||txtUsuario.Text=="")
             {
@@ -75,7 +75,7 @@ namespace ASP_SP.Source.Pages
                 {
                     using(SqlCommand cmd = new SqlCommand("Registrar", con))
                     {
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add("@Nombres", SqlDbType.VarChar).Value = txtNombres.Text;
                         cmd.Parameters.Add("@Apellidos", SqlDbType.VarChar).Value = txtApellidos.Text;
                         cmd.Parameters.Add("@Fecha", SqlDbType.Date).Value = txtFecha.Text;

@@ -15,7 +15,7 @@ namespace ASP_SP.Source.Pages
         readonly SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuariologeado"]==null)
+            if (Session["usuariologueado"]==null)
             {
                 Response.Redirect("/Source/Pages/FrmLogin.aspx");
             }
@@ -23,7 +23,7 @@ namespace ASP_SP.Source.Pages
             {
                using(con)
                 {
-                    using (SqlCommand cmd=new SqlCommand("CargarImagen", con))
+                    using (SqlCommand cmd = new SqlCommand("CargarImagen", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add("@Id", SqlDbType.Int).Value = Request.QueryString["id"];

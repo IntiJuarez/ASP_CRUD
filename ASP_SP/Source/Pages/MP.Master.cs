@@ -17,18 +17,18 @@ namespace ASP_SP.Source.Pages
         {
             if (Session["usuariologueado"]!=null)
             {
-                int usuariologueado = int.Parse(Session["usuariologueado"].ToString());
+                int id = int.Parse(Session["usuariologueado"].ToString());
                 using(con)
                 {
                     using (SqlCommand cmd = new SqlCommand("Perfil", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@Id", SqlDbType.Int).Value = usuariologueado;
+                        cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
                         con.Open();
                         SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                         dr.Read();
                         this.lblUsuario.Text = dr["Apellidos"].ToString() + ", "+dr["Nombres"].ToString();
-                        imagePerfil.ImageUrl = "/Source/Pages/FrmImagen.aspx?id=" + ID;
+                        imagePerfil.ImageUrl = "/Source/Pages/FrmImagen.aspx?id=" + id;
                     }
                 }
             }
